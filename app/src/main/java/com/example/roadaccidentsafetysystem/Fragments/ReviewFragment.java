@@ -3,16 +3,31 @@ package com.example.roadaccidentsafetysystem.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
+import com.example.roadaccidentsafetysystem.AdapterReview;
+import com.example.roadaccidentsafetysystem.AddAppReviewActivity;
 import com.example.roadaccidentsafetysystem.LoginActivity;
+import com.example.roadaccidentsafetysystem.ModelReview;
 import com.example.roadaccidentsafetysystem.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,6 +79,14 @@ public class ReviewFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     String mUID = "uid";
 
+    private RecyclerView reviewsRv;
+    private RatingBar ratingBar;
+    private Button addReviewBtn;
+    private TextView ratingsTv;
+
+    private ArrayList<ModelReview> reviewArrayList;
+    private AdapterReview adapterReview;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,15 +94,67 @@ public class ReviewFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_review, container, false);
 
+        ratingBar = view.findViewById(R.id.ratingBar);
+        reviewsRv = view.findViewById(R.id.reviewsRv);
+        ratingsTv = view.findViewById(R.id.ratingsTv);
+        addReviewBtn = view.findViewById(R.id.addReviewBtn);
+
         firebaseAuth = FirebaseAuth.getInstance();
+
+        addReviewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddAppReviewActivity.class);
+                startActivity(intent);
+            }
+        });
+
         checkUserStatus();
 
         return view;
     }
+
+    private float ratimgSum = 0;
+    private void loadReviews() {
+
+        reviewArrayList = new ArrayList<>();
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Ratings");
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        reviewArrayList.clear();
+                        ratimgSum = 0;
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            float rating = Float.parseFloat("" + ds.child("ratings").getValue());
+                            ratimgSum = ratimgSum + rating;
+
+                            ModelReview modelReview = ds.getValue(ModelReview.class);
+                            reviewArrayList.add(modelReview);
+                        }
+                        adapterReview = new AdapterReview(getContext(), reviewArrayList);
+                        reviewsRv.setAdapter(adapterReview);
+
+                        long numberOfReviews = snapshot.getChildrenCount();
+                        float avgRating = ratimgSum / numberOfReviews;
+
+                        ratingsTv.setText(String.format("%.2f", avgRating) + "[" + numberOfReviews + "]");
+                        ratingBar.setRating(avgRating);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
     private void checkUserStatus() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
             mUID = user.getUid();
+            loadReviews();
 
         } else {
             startActivity(new Intent(getActivity(), LoginActivity.class));

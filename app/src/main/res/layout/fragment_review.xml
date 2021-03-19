@@ -3,12 +3,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.ReviewFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:alpha=".5"
+            android:layout_height="match_parent"
+            android:background="@drawable/background">
+
+        </RelativeLayout>
+
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <RelativeLayout
+                android:id="@+id/layout1"
+                android:layout_width="match_parent"
+                android:gravity="start|top"
+                android:layout_height="180dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="top">
+
+                    <ImageView
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:layout_centerVertical="true"
+                        android:elevation="5dp"
+                        android:src="@drawable/circle_bg" />
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileIv"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="20dp"
+                        android:elevation="5dp"
+                        android:src="@drawable/logo1"
+                        app:civ_border_color="@color/colorOrange"
+                        app:civ_border_width="1dp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="10dp"
+                        android:isIndicator="true"
+                        android:max="5"
+                        android:numStars="5"
+                        android:paddingStart="5dp"
+                        android:rating="3.5"
+                        android:scaleX=".4"
+                        android:scaleY=".4" />
+
+                    <TextView
+                        android:id="@+id/ratingsTv"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="50dp"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/poppins_light"
+                        android:text="3.4"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Road Accident safety system"-->
+<!--                style="@style/TextAppearance.AppCompat.Button"-->
+<!--                android:fontFamily="@font/dosis_medium"-->
+<!--                android:textColor="@color/colorRed"-->
+<!--                android:textSize="16sp"-->
+<!--                android:layout_gravity="center"/>-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:id="@+id/divider"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_below="@+id/relativeLayout"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/primaryTextColor"
+                    android:paddingLeft="40dp"
+                    android:paddingRight="40dp" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/reviewsRv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/divider"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_reviews" />
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addReviewBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add a Reviews"
+            android:elevation="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/poppins_light"
+            android:textSize="12sp"
+            android:background="@color/primaryTextColor"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            style="@style/Widget.AppCompat.Button.Small"/>
+
+    </RelativeLayout>
+
+
+
+
+
 
 </FrameLayout>
