@@ -6,9 +6,99 @@
     tools:context=".Fragments.AddAccidentFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:alpha=".8"
+        android:layout_height="match_parent"
+        android:background="@drawable/background">
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputPeopleInjured"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/loginViewsMargin">
+
+            <EditText
+                android:id="@+id/injuredNoAccidentEt"
+                style="@style/modifiedEditText"
+                android:fontFamily="@font/poppins_light"
+                android:hint="Enter No. of people injured"
+                android:inputType="number"
+                android:maxLines="1"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputShortDesc"
+            style="@style/parent">
+
+            <EditText
+                android:id="@+id/accidentDescriptionEt"
+                style="@style/modifiedEditText"
+                android:fontFamily="@font/poppins_light"
+                android:hint="Enter Short Description of Accident"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputAccidentAddress"
+            style="@style/parent">
+
+            <EditText
+                android:id="@+id/addressEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ratingBar"
+                android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins_light"
+                android:gravity="top"
+                android:inputType="textMultiLine|textCapSentences"
+                android:hint="Accident Address"
+                android:minHeight="100dp"
+                android:padding="10dp"
+                android:textColor="@color/colorPrimaryLogin"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="bottom"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/addAccidentBtn"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:text="Add " />
+
+            <Button
+                android:id="@+id/gpsLocationBtn"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GPS " />
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
 
 </FrameLayout>
