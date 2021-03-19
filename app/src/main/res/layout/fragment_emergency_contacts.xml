@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.EmergencyContactsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/policeCv"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    tools:ignore="UnusedAttribute">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dosis_light"
+                            android:text="Police"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="20dp"
+                            android:padding="5dp"
+                            android:src="@drawable/police_bg" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contact No : "
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_light"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textColor="@color/black"
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/poppins_light"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="Tap to call"
+                            android:gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:drawablePadding="5dp"
+                            android:textColor="@color/colorGrey02"
+                            android:layout_weight="1"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/poppins_light"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ambulanceCv"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    tools:ignore="UnusedAttribute">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dosis_light"
+                            android:text="Ambulance"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:padding="5dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/ambulance_bg" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contact No : "
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_light"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="102"
+                                android:textColor="@color/black"
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/poppins_light"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="Tap to call"
+                            android:gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:drawablePadding="5dp"
+                            android:textColor="@color/colorGrey02"
+                            android:layout_weight="1"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/poppins_light"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fireBrigadeCv"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    tools:ignore="UnusedAttribute">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dosis_light"
+                            android:text="Fire Brigade"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="20dp"
+                            android:padding="5dp"
+                            android:src="@drawable/fire_brigade_bg" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contact No : "
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_light"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="101"
+                                android:textColor="@color/black"
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/poppins_light"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="Tap to call"
+                            android:gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:drawablePadding="5dp"
+                            android:textColor="@color/colorGrey02"
+                            android:layout_weight="1"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/poppins_light"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/childHelplineCv"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="12dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="6dp"
+                    tools:ignore="UnusedAttribute">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dosis_light"
+                            android:text="Child Helpline"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="18sp" />
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:padding="5dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@drawable/child_helpline_bg" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Contact No : "
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/poppins_light"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1098"
+                                android:textColor="@color/black"
+                                android:layout_weight="1"
+                                android:textSize="10sp"
+                                android:fontFamily="@font/poppins_light"/>
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:text="Tap to call"
+                            android:gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:drawablePadding="5dp"
+                            android:textColor="@color/colorGrey02"
+                            android:layout_weight="1"
+                            android:textSize="10sp"
+                            android:fontFamily="@font/poppins_light"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <item android:title="">
+
+        <group android:checkableBehavior="single">
+
+            <item
+                android:id="@+id/emergencyContacts"
+                android:icon="@drawable/ic_emergency_contacts_white"
+                android:title="Emergency Contacts" />
+
+            <item
+                android:id="@+id/shareLocation"
+                android:icon="@drawable/ic_share_location_white"
+                android:title="Share Location" />
+        </group>
+
+    </item>
+
+
+    <item android:title="">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/UserAccount"
+                    android:icon="@drawable/ic_person_white"
+                    android:title="Your account" />
+
+                <item
+                    android:id="@+id/addAccident"
+                    android:icon="@drawable/ic_plus_accident_white"
+                    android:title="Add accident" />
+                <item
+                    android:id="@+id/viewAccident"
+                    android:icon="@drawable/ic_view_accident"
+                    android:title="View accident" />
+
+
+            </group>
+
+        </menu>
+
+
+    </item>
+
+
+    <item android:title="">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/reviews"
+                    android:icon="@drawable/ic_reviews_white"
+                    android:title="Our App Reviews" />
+
+                <item
+                    android:id="@+id/aboutUs"
+                    android:icon="@drawable/ic_about_us_white"
+                    android:title="About Us" />
+                <item
+                    android:id="@+id/logout"
+                    android:icon="@drawable/ic_logout_white_menu"
+                    android:title="Logout" />
+            </group>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "134113573164",
+    "firebase_url": "https://roadsafetyaccidentapp-default-rtdb.firebaseio.com",
+    "project_id": "roadsafetyaccidentapp",
+    "storage_bucket": "roadsafetyaccidentapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134113573164:android:7097ef986e521c50209489",
+        "android_client_info": {
+          "package_name": "com.example.roadaccidentsafetysystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134113573164-3lmp0t45gol7u21r2nem9v16urpr8tnj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.roadaccidentsafetysystem",
+            "certificate_hash": "6b30839ba76ca2b1f24b96cf802ca67bfae1778e"
+          }
+        },
+        {
+          "client_id": "134113573164-u59f7sehv8cum469i0sofo71gn79qn2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDANWcSzLcQr9LwI7cddW4EnMpXLweN_z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134113573164-u59f7sehv8cum469i0sofo71gn79qn2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134113573164:android:9ba722657e4fa5a7209489",
+        "android_client_info": {
+          "package_name": "com.example.roadsafetyaccidentapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134113573164-u59f7sehv8cum469i0sofo71gn79qn2n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDANWcSzLcQr9LwI7cddW4EnMpXLweN_z4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134113573164-u59f7sehv8cum469i0sofo71gn79qn2n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
