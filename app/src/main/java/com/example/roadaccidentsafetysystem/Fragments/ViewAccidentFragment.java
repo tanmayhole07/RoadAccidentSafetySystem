@@ -3,16 +3,27 @@ package com.example.roadaccidentsafetysystem.Fragments;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.roadaccidentsafetysystem.AdapterViewAccident;
 import com.example.roadaccidentsafetysystem.LoginActivity;
+import com.example.roadaccidentsafetysystem.ModelViewAccident;
 import com.example.roadaccidentsafetysystem.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,6 +76,12 @@ public class ViewAccidentFragment extends Fragment {
     FirebaseAuth firebaseAuth;
     String mUID = "uid";
 
+    RecyclerView viewAccidentRv;
+
+
+    private ArrayList<ModelViewAccident> viewAccidentList;
+    AdapterViewAccident adapterViewAccident;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,6 +89,37 @@ public class ViewAccidentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_view_accident, container, false);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        viewAccidentRv = view.findViewById(R.id.viewAccidentRv);
+        viewAccidentList = new ArrayList<>();
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        viewAccidentRv.setLayoutManager(layoutManager);
+
+
+
+        FirebaseDatabase.getInstance().getReference("Accidents")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        viewAccidentList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            ModelViewAccident modelViewAccident = ds.getValue(ModelViewAccident.class);
+                            viewAccidentList.add(modelViewAccident);
+                        }
+
+                        adapterViewAccident = new AdapterViewAccident(getActivity(), viewAccidentList);
+                        viewAccidentRv.setAdapter(adapterViewAccident);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
         checkUserStatus();
 
         return view;
