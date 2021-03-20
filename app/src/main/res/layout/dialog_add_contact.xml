@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/addPersonTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Person"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="16sp"
+        android:padding="5dp"
+        android:drawablePadding="5dp"
+        app:drawableEndCompat="@drawable/ic_add_person_blue" />
+
+    <TextView
+        android:id="@+id/nameContactTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="5dp"
+        android:hint="Name and Contact"
+        android:fontFamily="@font/poppins_light"
+        android:textSize="14sp"
+        android:padding="5dp" />
+
+    <Button
+        android:id="@+id/addPersonAndContactBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:elevation="5dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
