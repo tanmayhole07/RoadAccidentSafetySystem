@@ -444,6 +444,13 @@
             android:padding="10dp"
             android:layout_below="@+id/tabMode">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/emergencyRv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/row_emergency_contact" />
+
             <Button
                 android:id="@+id/addPersonBtn"
                 android:layout_width="wrap_content"
@@ -454,7 +461,6 @@
                 android:layout_marginBottom="10dp"
                 android:drawablePadding="5dp"
                 android:text="Add Contact"/>
-
 
         </RelativeLayout>
 

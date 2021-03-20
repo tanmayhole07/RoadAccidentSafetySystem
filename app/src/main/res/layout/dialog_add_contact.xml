@@ -11,6 +11,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Person"
+        android:background="@drawable/textview_shape"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
         android:fontFamily="@font/poppins_medium"
         android:textSize="16sp"
         android:padding="5dp"
@@ -22,10 +27,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="5dp"
+        android:layout_marginTop="10dp"
         android:hint="Name and Contact"
         android:fontFamily="@font/poppins_light"
-        android:textSize="14sp"
-        android:padding="5dp" />
+        android:textSize="12sp"
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/addPersonAndContactBtn"

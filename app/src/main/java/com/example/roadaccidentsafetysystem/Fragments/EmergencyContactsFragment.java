@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.Adapter;
 
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -25,14 +28,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.roadaccidentsafetysystem.Adapters.AdapterEmergencyContact;
 import com.example.roadaccidentsafetysystem.LoginActivity;
+import com.example.roadaccidentsafetysystem.Models.ModelEmergencyContact;
+import com.example.roadaccidentsafetysystem.Models.ModelViewAccident;
 import com.example.roadaccidentsafetysystem.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -102,11 +111,12 @@ public class EmergencyContactsFragment extends Fragment {
     ScrollView helpLineNumberRv;
     TextView helplinetext, contactstext;
 
+    RecyclerView emergencyRv;
+
     Button addPersonBtn;
 
-
-    ArrayList<String> contactList = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
+    private ArrayList<ModelEmergencyContact> emergencyContactList;
+    AdapterEmergencyContact adapterEmergencyContact;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -119,6 +129,8 @@ public class EmergencyContactsFragment extends Fragment {
         fireBrigadeCv = view.findViewById(R.id.fireBrigadeCv);
         childHelplineCv = view.findViewById(R.id.childHelplineCv);
 
+        emergencyContactList = new ArrayList<>();
+
         tabHelplineRv = view.findViewById(R.id.tabHelplineRv);
         tabContactsRv = view.findViewById(R.id.tabContactsRv);
         helpLineBorderRv = view.findViewById(R.id.helpLineBorderRv);
@@ -130,6 +142,7 @@ public class EmergencyContactsFragment extends Fragment {
 
         helpLineNumberRv = view.findViewById(R.id.helpLineNumberRv);
         emergencyContactRv = view.findViewById(R.id.emergencyContactRv);
+        emergencyRv =  view.findViewById(R.id.emergencyRv);
 
         policeCv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,13 +213,50 @@ public class EmergencyContactsFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         user = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
         showHelplineUI();
+        loadEmergencyContacts();
 
         databaseReference = firebaseDatabase.getReference("Users");
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        emergencyRv.setLayoutManager(layoutManager);
+
+
 
 
         return view;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    private void loadEmergencyContacts() {
+
+        FirebaseDatabase.getInstance().getReference("Users").child(firebaseAuth.getUid()).child("EmergencyContacts")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        emergencyContactList.clear();
+                        for (DataSnapshot ds : snapshot.getChildren()){
+                            ModelEmergencyContact modelEmergencyContact = ds.getValue(ModelEmergencyContact.class);
+                            emergencyContactList.add(modelEmergencyContact);
+                        }
+                        adapterEmergencyContact = new AdapterEmergencyContact(getActivity(), emergencyContactList);
+                        emergencyRv.setAdapter(adapterEmergencyContact);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     private void dialogAddPerson() {
 
@@ -259,7 +309,7 @@ public class EmergencyContactsFragment extends Fragment {
     }
 
     private void addPerson(String dialogName, String dialogNumber) {
-        Toast.makeText(getActivity(), ""+dialogName + " " + dialogNumber, Toast.LENGTH_SHORT).show();
+
 
         final String timeStamp = "" + System.currentTimeMillis();
 
@@ -273,7 +323,7 @@ public class EmergencyContactsFragment extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         pd.dismiss();
-                        Toast.makeText(getActivity(), "Added Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Added "+dialogName + " " + dialogNumber, Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

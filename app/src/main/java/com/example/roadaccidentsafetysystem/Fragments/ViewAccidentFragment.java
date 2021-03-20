@@ -12,9 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.roadaccidentsafetysystem.AdapterViewAccident;
+import com.example.roadaccidentsafetysystem.Adapters.AdapterViewAccident;
 import com.example.roadaccidentsafetysystem.LoginActivity;
-import com.example.roadaccidentsafetysystem.ModelViewAccident;
+import com.example.roadaccidentsafetysystem.Models.ModelViewAccident;
 import com.example.roadaccidentsafetysystem.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

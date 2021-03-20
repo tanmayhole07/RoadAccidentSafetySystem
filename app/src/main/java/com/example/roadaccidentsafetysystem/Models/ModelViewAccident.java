@@ -1,4 +1,4 @@
-package com.example.roadaccidentsafetysystem;
+package com.example.roadaccidentsafetysystem.Models;
 
 public class ModelViewAccident {
 

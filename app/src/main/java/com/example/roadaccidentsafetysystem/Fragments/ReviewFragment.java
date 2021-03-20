@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.example.roadaccidentsafetysystem.AdapterReview;
+import com.example.roadaccidentsafetysystem.Adapters.AdapterReview;
 import com.example.roadaccidentsafetysystem.AddAppReviewActivity;
 import com.example.roadaccidentsafetysystem.LoginActivity;
-import com.example.roadaccidentsafetysystem.ModelReview;
+import com.example.roadaccidentsafetysystem.Models.ModelReview;
 import com.example.roadaccidentsafetysystem.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

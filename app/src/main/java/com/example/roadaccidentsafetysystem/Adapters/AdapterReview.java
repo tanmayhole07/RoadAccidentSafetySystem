@@ -1,4 +1,4 @@
-package com.example.roadaccidentsafetysystem;
+package com.example.roadaccidentsafetysystem.Adapters;
 
 import android.content.Context;
 import android.text.format.DateFormat;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roadaccidentsafetysystem.Models.ModelReview;
+import com.example.roadaccidentsafetysystem.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

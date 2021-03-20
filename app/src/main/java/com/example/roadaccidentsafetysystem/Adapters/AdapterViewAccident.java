@@ -1,4 +1,4 @@
-package com.example.roadaccidentsafetysystem;
+package com.example.roadaccidentsafetysystem.Adapters;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -19,6 +19,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roadaccidentsafetysystem.Models.ModelViewAccident;
+import com.example.roadaccidentsafetysystem.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
