@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/headerTv"
+        style="@style/TextAppearance.AppCompat.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:textColor="@color/colorGrey02"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="Delete Contact"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/contactNameTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerTv"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/textview_shape"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="4dp"
+        android:text="Tanmay Hole"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>

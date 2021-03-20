@@ -260,7 +260,7 @@ public class AddAccidentFragment extends Fragment {
         hashMap.put("city", "" + cityDb);
         hashMap.put("subLocal", "" + subLocalDb);
         hashMap.put("address", "" + address);
-        hashMap.put("timestamp", "" + pTime);
+        hashMap.put("timestamp", "" + timeStamp + "");
         hashMap.put("latitudeAccident", "" + latitudeAccident);
         hashMap.put("longitudeAccident", "" + longitudeAccident);
         hashMap.put("accidentPostedBy",""+firebaseAuth.getUid());

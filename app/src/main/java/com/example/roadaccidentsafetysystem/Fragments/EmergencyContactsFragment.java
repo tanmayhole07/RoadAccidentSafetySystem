@@ -215,7 +215,7 @@ public class EmergencyContactsFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
 
         showHelplineUI();
-        loadEmergencyContacts();
+
 
         databaseReference = firebaseDatabase.getReference("Users");
 
@@ -365,6 +365,8 @@ public class EmergencyContactsFragment extends Fragment {
         emergencyContactRv.setVisibility(View.VISIBLE);
         helpLineNumberRv.setVisibility(View.GONE);
 
+        checkUserStatus();
+
         helplinetext.setTextColor(getResources().getColor(R.color.white));
         //tabOrderDetailsTv.setBackgroundColor(getResources().getColor(android.R.color.transparent));
 
@@ -396,6 +398,18 @@ public class EmergencyContactsFragment extends Fragment {
         startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + Uri.encode(phoneNumber))));
         Toast.makeText(getActivity(), "Calling " + phoneNumber + " now", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void checkUserStatus() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            mUID = user.getUid();
+            loadEmergencyContacts();
+
+        } else {
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+            getActivity().finish();
+        }
     }
 
 }

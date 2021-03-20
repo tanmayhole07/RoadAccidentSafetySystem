@@ -120,7 +120,7 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
 
-                                deleteInfo(firebaseAuth.getUid(), pTimestamp);
+                                deleteInfo(postedBy);
                             }
                         });
                 alert.show();
@@ -128,7 +128,6 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
                 return true;
             }
         });
-
 
     }
 
@@ -154,53 +153,30 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
         pd.show();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Accidents").child(pTimestamp);
-        ref.orderByChild("accidentPostedBy").equalTo(firebaseAuth.getUid());
-
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("peopleInjured", peopleInjured);
-        result.put("accDescription", description);
-//
-//        ref.child("peopleInjured").setValue(peopleInjured);
-//        ref.child("accDescription").setValue(description);
-
-        ref.updateChildren(result)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        pd.dismiss();
-                        Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        pd.dismiss();
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        ref.child("peopleInjured").setValue(peopleInjured);
+        ref.child("accDescription").setValue(description);
 
         pd.dismiss();
 
     }
 
-    private void deleteInfo(String postedBy, String pTimestamp) {
+    private void deleteInfo(String postedBy) {
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Accidents").child(pTimestamp);
-        //ref.orderByChild("accidentPostedBy").equalTo(firebaseAuth.getUid())
-                ref.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot ds : snapshot.getChildren()) {
-                            ds.getRef().removeValue();
-                            Toast.makeText(context, "Deleted Info Successfully", Toast.LENGTH_SHORT).show();
-                        }
-                    }
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Accidents");
+        ref.orderByChild("accidentPostedBy").equalTo(postedBy).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()){
+                    ds.getRef().removeValue();
+                    Toast.makeText(context, "Deleted Info Successfully", Toast.LENGTH_SHORT).show();
+                }
+            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(context, "Cannot Delete accident posted by other user", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

@@ -26,7 +26,7 @@
         android:gravity="center_horizontal"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_lightltalic"
-        android:text="Tanmay Hole"
+        android:text="Username"
         android:textColor="#fff"
         android:textSize="18sp" />
 

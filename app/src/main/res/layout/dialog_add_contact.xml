@@ -1,47 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:layout_height="match_parent">
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/addPersonTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Person"
         android:background="@drawable/textview_shape"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:fontFamily="@font/poppins_medium"
-        android:textSize="16sp"
-        android:padding="5dp"
         android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:padding="5dp"
+        android:paddingStart="10dp"
+        android:paddingTop="2dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="2dp"
+        android:text="Add Person"
+        android:textSize="16sp"
         app:drawableEndCompat="@drawable/ic_add_person_blue" />
 
     <TextView
         android:id="@+id/nameContactTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
         android:layout_marginTop="10dp"
-        android:hint="Name and Contact"
+        android:elevation="5dp"
         android:fontFamily="@font/poppins_light"
-        android:textSize="12sp"
-        android:padding="10dp" />
+        android:hint="Name and Contact"
+        android:padding="10dp"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/addPersonAndContactBtn"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add"
-        android:elevation="5dp"
-        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="30dp"
+        android:elevation="5dp"
         android:gravity="center"
-        android:layout_gravity="center_horizontal"/>
+        android:text="Add" />
 
 </LinearLayout>
