@@ -19,6 +19,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,9 +30,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
 
-public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAccident.MyHolder>{
+public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAccident.MyHolder> {
 
     private Context context;
     public ArrayList<ModelViewAccident> viewAccidentList;
@@ -46,7 +49,7 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.row_view_accident,parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.row_view_accident, parent, false);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -64,7 +67,7 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
         String pTimestamp = modelAccident.getTimestamp();
         String latitude = modelAccident.getLatitudeAccident();
         String longitude = modelAccident.getLongitudeAccident();
-        String postedBy =  modelAccident.getAccidentPostedBy();
+        String postedBy = modelAccident.getAccidentPostedBy();
 
         Calendar calendar = Calendar.getInstance(Locale.getDefault());
         calendar.setTimeInMillis(Long.parseLong(pTimestamp));
@@ -115,7 +118,7 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
 
-                                deleteInfo(postedBy);
+                                deleteInfo(firebaseAuth.getUid(), pTimestamp);
                             }
                         });
                 alert.show();
@@ -149,30 +152,53 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
         pd.show();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Accidents").child(pTimestamp);
-        ref.child("peopleInjured").setValue(peopleInjured);
-        ref.child("accDescription").setValue(description);
+        ref.orderByChild("accidentPostedBy").equalTo(firebaseAuth.getUid());
+
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("peopleInjured", peopleInjured);
+        result.put("accDescription", description);
+//
+//        ref.child("peopleInjured").setValue(peopleInjured);
+//        ref.child("accDescription").setValue(description);
+
+        ref.updateChildren(result)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        pd.dismiss();
+                        Toast.makeText(context, "Updated", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        pd.dismiss();
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         pd.dismiss();
 
     }
 
-    private void deleteInfo(String postedBy) {
+    private void deleteInfo(String postedBy, String pTimestamp) {
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Accidents");
-        ref.orderByChild("accidentPostedBy").equalTo(postedBy).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds : snapshot.getChildren()){
-                    ds.getRef().removeValue();
-                    Toast.makeText(context, "Deleted Info Successfully", Toast.LENGTH_SHORT).show();
-                }
-            }
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Accidents").child(pTimestamp);
+        //ref.orderByChild("accidentPostedBy").equalTo(firebaseAuth.getUid())
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            ds.getRef().removeValue();
+                            Toast.makeText(context, "Deleted Info Successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(context, "Cannot Delete accident posted by other user", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
@@ -183,13 +209,12 @@ public class AdapterViewAccident extends RecyclerView.Adapter<AdapterViewAcciden
     }
 
 
-
     @Override
     public int getItemCount() {
         return viewAccidentList.size();
     }
 
-    class MyHolder extends RecyclerView.ViewHolder{
+    class MyHolder extends RecyclerView.ViewHolder {
         TextView peopleInjuredTv, accDescriptionTv, cityTv, subLocaleTv, timeTv;
         ImageButton accidentMapIb;
 
